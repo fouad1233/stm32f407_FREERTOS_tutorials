@@ -1,0 +1,9 @@
+../Core/Src/main.c:93:5:main	1
+../Core/Src/main.c:177:6:SystemClock_Config	3
+../Core/Src/main.c:225:13:MX_I2C1_Init	2
+../Core/Src/main.c:259:13:MX_I2S3_Init	2
+../Core/Src/main.c:293:13:MX_SPI1_Init	2
+../Core/Src/main.c:331:13:MX_GPIO_Init	1
+../Core/Src/main.c:433:6:buttonControlTest	3
+../Core/Src/main.c:458:6:ledFlashTask	6
+../Core/Src/main.c:498:6:Error_Handler	1
