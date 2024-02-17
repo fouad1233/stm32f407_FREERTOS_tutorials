@@ -24,6 +24,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
+#include "string.h"
+#include "stdbool.h"
 
 /* USER CODE END Includes */
 
@@ -60,6 +62,9 @@ const osThreadAttr_t defaultTask_attributes = {
 };
 /* USER CODE BEGIN PV */
 TaskHandle_t myTask1Handle = NULL;
+bool UART_ACCESS_KEY1 = true;
+bool UART_ACCESS_KEY2 = false;
+
 
 /* USER CODE END PV */
 
@@ -475,8 +480,17 @@ void Task1_Handler(void *params)
 {
 	while(1)
 	{
-		HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
-		osDelay(100);
+		if (UART_ACCESS_KEY1 == true){
+			UART_ACCESS_KEY2 = false;
+			HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+			char message[] = "Hi this is Task 1\r\n";
+			HAL_UART_Transmit(&huart2,(uint8_t *)message , strlen(message), 100);
+			osDelay(500);
+			UART_ACCESS_KEY2 = true;
+			UART_ACCESS_KEY1 = false;
+
+		}
+
 
 	}
 
@@ -486,11 +500,23 @@ void Task2_Handler(void *params)
 {
 	while(1)
 	{
-		HAL_GPIO_TogglePin(LD4_GPIO_Port, LD4_Pin);
-		osDelay(100);
+		if (UART_ACCESS_KEY2 == true){
+			UART_ACCESS_KEY1 = false;
+			HAL_GPIO_TogglePin(LD4_GPIO_Port, LD4_Pin);
+			char message[] = "Hi this is Task 2\r\n";
+			HAL_UART_Transmit(&huart2,(uint8_t *)message , strlen(message), 100);
+			osDelay(500);
+			UART_ACCESS_KEY1 = true;
+			UART_ACCESS_KEY2 = false;
+
+		}
 
 	}
 }
+
+/*** Functions ***/
+
+
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
