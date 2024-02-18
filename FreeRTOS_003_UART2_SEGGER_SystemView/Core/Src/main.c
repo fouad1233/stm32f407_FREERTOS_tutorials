@@ -101,6 +101,7 @@ int _write(int32_t file, uint8_t *ptr, int32_t len)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+	DWT->CTRL = (1 << 0);
 
   /* USER CODE END 1 */
 
