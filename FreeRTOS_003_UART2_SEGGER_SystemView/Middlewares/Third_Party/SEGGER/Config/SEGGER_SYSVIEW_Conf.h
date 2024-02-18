@@ -110,7 +110,7 @@ Revision: $Rev: 12706 $
 #endif
 
 #ifndef   SEGGER_SYSVIEW_CORE
-  #define SEGGER_SYSVIEW_CORE SEGGER_SYSVIEW_CORE_OTHER
+  #define SEGGER_SYSVIEW_CORE SEGGER_SYSVIEW_CORE_CM3
 #endif
 
 /*********************************************************************
